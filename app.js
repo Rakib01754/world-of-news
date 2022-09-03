@@ -25,6 +25,7 @@ const displayCategories = async () => {
         `
         categoriesContainer.appendChild(categoryLi)
     });
+    showLoader(true)
 }
 
 // Display Newses Part 
@@ -67,9 +68,9 @@ const displayNewses = async (id, cataName) => {
                     <i class="fa-solid fa-eye"></i> ${total_view ? total_view : 'No data found'}
                 </div>
                 
-                <button class="btn btn-primary">
-                     <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                 </button>
+                <label for="my-modal" class="btn btn-primary modal-button" onclick="displayModal('${_id}')" >
+                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+            </label>
                
             </div>
         </div>
@@ -77,11 +78,70 @@ const displayNewses = async (id, cataName) => {
         `
             newsContainer.appendChild(newDiv)
         })
+
     } catch (error) {
         console.log(error)
     }
 
+    showLoader(false)
+}
 
+// display modal part 
+
+const displayModal = async (news_id) => {
+    try {
+        const response = await fetch(`https://openapi.programming-hero.com/api/news/${news_id}`)
+        const data = await (response.json())
+        const postDetails = await (data.data[0]);
+        const { title, total_view, author, image_url, details } = postDetails;
+        const modalContainer = document.getElementById('modal-container');
+        const newDiv = document.createElement('div')
+        newDiv.innerHTML = `           
+    <input type="checkbox" id="my-modal" class="modal-toggle" />
+    <div class="modal">
+        <div class="modal-box">
+        <img src="${image_url}" alt="" class="mb-2">
+            <h3 class="font-bold text-lg">${title}</h3>
+            <p class="py-4">${details}</p>
+            <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between flex-col md:flex-row">
+                        <div class="btn btn-ghost btn-circle avatar">
+                            <div class="w-20 rounded-full">
+                                <img src="${author.img}" />
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold">${author.name ? author.name : 'No data found'}</div>
+                            <div>${author.published_date ? author.published_date : 'No data found'}</div>
+                        </div>
+                    </div>
+                    <div class="font-bold">
+                        <i class="fa-solid fa-eye"></i> ${total_view ? total_view : 'No data found'}
+                    </div>
+                    </div>
+                    
+            <div class="modal-action">
+                <label for="my-modal" class="btn">CLose!</label>
+            </div>
+        </div>
+    </div>
+    `
+        modalContainer.appendChild(newDiv);
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// spinner part 
+
+const showLoader = (loader) => {
+    const loaderArea = document.getElementById('spinner')
+    if (loader === true) {
+        loaderArea.classList.remove('hidden')
+    }
+    else {
+        loaderArea.classList.add('hidden')
+    }
 }
 displayNewses('08', 'All News');
 displayCategories();
