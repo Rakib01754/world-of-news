@@ -50,9 +50,9 @@ const displayNewses = async (id, cataName) => {
             const { thumbnail_url, total_view, title, details, author, _id } = singleNews
             const newDiv = document.createElement('div')
             newDiv.innerHTML = `
-        <div class="card card-side bg-base-100 shadow-xl my-5 flex flex-col md:flex-row">
+        <div class="card card-side bg-base-100 shadow-xl my-5 flex flex-col md:flex-row" >
         <img src="${thumbnail_url}" class="p-3">
-        <div class="card-body">
+        <div class="card-body" onclick="displayModal('${_id}')" id="my-modal">
             <h2 class="card-title text-3xl">${title}</h2>
             <p>${details ? details.slice(0, 200) + '...' : details}</p>
             <div class="flex items-center justify-between">
@@ -71,10 +71,9 @@ const displayNewses = async (id, cataName) => {
                 <div class="font-bold">
                     <i class="fa-solid fa-eye"></i> ${total_view ? total_view : 'No data found'}
                 </div>
-                
-                <label for="my-modal" class="btn btn-primary modal-button" onclick="displayModal('${_id}')" >
-                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
-            </label>
+                <label class="btn btn-primary modal-button">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                 </label>
                
             </div>
         </div>
@@ -98,38 +97,22 @@ const displayModal = async (news_id) => {
         const response = await fetch(`https://openapi.programming-hero.com/api/news/${news_id}`)
         const data = await (response.json())
         const postDetails = await (data.data[0]);
+        console.log(postDetails)
         const { title, total_view, author, image_url, details } = postDetails;
-        const modalContainer = document.getElementById('modal-container');
+        const modalContainer = document.getElementById('my-modal');
         const newDiv = document.createElement('div')
-        newDiv.innerHTML = `           
-    <input type="checkbox" id="my-modal" class="modal-toggle" />
-    <div class="modal">
+        newDiv.classList.add('modal')
+        newDiv.innerHTML = ` 
+
         <div class="modal-box">
-        <img src="${image_url}" alt="" class="mb-2">
-            <h3 class="font-bold text-lg">${title}</h3>
-            <p class="py-4">${details}</p>
-            <div class="flex items-center justify-between">
-                    <div class="flex items-center justify-between flex-col md:flex-row">
-                        <div class="btn btn-ghost btn-circle avatar">
-                            <div class="w-20 rounded-full">
-                                <img src="${author.img}" />
-                            </div>
-                        </div>
-                        <div class="ml-4">
-                            <div class="font-bold">${author.name ? author.name : 'No data found'}</div>
-                            <div>${author.published_date ? author.published_date : 'No data found'}</div>
-                        </div>
-                    </div>
-                    <div class="font-bold">
-                        <i class="fa-solid fa-eye"></i> ${total_view ? total_view : 'No data found'}
-                    </div>
-                    </div>
-                    
+            <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
+            <p class="py-4">You've been selected for a chance to get one year of subscription to use
+                Wikipedia for free!</p>
             <div class="modal-action">
-                <label for="my-modal" class="btn">CLose!</label>
+                <label for="my-modal" class="btn">Yay!</label>
             </div>
         </div>
-    </div>
+    
     `
         modalContainer.appendChild(newDiv);
     } catch (error) {
@@ -148,5 +131,5 @@ const showLoader = (loader) => {
         loaderArea.classList.add('hidden')
     }
 }
-displayNewses('08', 'All News');
+displayNewses('01', 'Breaking News');
 displayCategories();

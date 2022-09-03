@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon link  -->
+    <link rel="icon" type="image/png" href="icon/favicon.ico">
+    <title>World Of News</title>
+    <!-- font awesome kit -->
+    <script src="https://kit.fontawesome.com/d09449a7ab.js" crossorigin="anonymous"></script>
+    <!-- link of tailwind and daisyui  -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-mono">
+    <!-- Header part  -->
+    <header class="container mx-auto">
+        <div class="navbar bg-base-100 font-bold">
+            <div class="flex-1">
+                <a class="normal-case text-2xl">World Of <span class="text-white bg-primary p-3 ml-2">News</span></a>
+            </div>
+            <div class="flex-none">
+                <ul class="menu menu-horizontal p-0">
+                    <li><a href="index.html">News</a></li>
+                    <li><a href="blog.html" target="_blank">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+    </header>
+    <main>
+        <section class="container mx-auto mt-5 w-10/12">
+            <div class="border p-5">
+                <h2 class="text-3xl font-bold">1. Difference Between Var, Let, Const</h2>
+                <p><span class="font-bold">var:</span> <br>
+                    The scope of a var variable is functional scope. <br>
+                    It can be updated and re-declared into the scope. <br>
+                    It can be declared without initialization. <br>
+                    It can be accessed without initialization as its default value is “undefined”. <br>
+                    hoisting done , with initializing as ‘default’ value <br> <br>
+                    <span class="font-bold">let:</span> <br>
+                    The scope of a let variable is block scope. <br>
+                    It can be updated but cannot be re-declared into the scope. <br>
+                    It can be declared without initialization. <br>
+                    It cannot be accessed without initialization otherwise it will give ‘referenceError’. <br>
+                    Hoisting is done , but not initialized (this is the reason for error when we access the let variable
+                    before declaration/initialization <br> <br>
+                    <span class="font-bold">const:</span> <br>
+                    The scope of a const variable is block scope. <br>
+                    It cannot be updated or re-declared into the scope. <br>
+                    It cannot be declared without initialization. <br>
+                    It cannot be accessed without initialization, as it cannot be declared without initialization. <br>
+                    Hoisting is done, but not initialized (this is the reason for error when we access the const
+                    variable before declaration/initialization
+
+                </p>
+            </div>
+            <div class="border p-5 mt-3">
+                <h2 class="text-3xl font-bold">2. Benefit Of Using Template String</h2>
+                <p>It lets us insert/interpolate variables and expressions into strings without needing to concatenate
+                    like in older versions of JavaScript. It allows us to create strings that are complex and contain
+                    dynamic elements. Another great thing that comes with template strings are tags. </p>
+            </div>
+            <div class="border p-5">
+                <h2 class="text-3xl font-bold">1. Difference Between Normal Function And Arrow Function</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur aliquam velit nihil minus, enim
+                    quisquam laboriosam ducimus magni eveniet iste commodi dolore, earum cupiditate eligendi nulla
+                    impedit
+                    tenetur incidunt. Mollitia, laudantium porro. Voluptatem illum quam est totam eveniet tempora
+                    nesciunt
+                    eum quas facere minus, dicta aperiam, dignissimos laudantium deleniti aspernatur! </p>
+            </div>
+            <div class="border p-5">
+                <h2 class="text-3xl font-bold">1. Difference Between map,ForEach,find,filter</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur aliquam velit nihil minus, enim
+                    quisquam laboriosam ducimus magni eveniet iste commodi dolore, earum cupiditate eligendi nulla
+                    impedit
+                    tenetur incidunt. Mollitia, laudantium porro. Voluptatem illum quam est totam eveniet tempora
+                    nesciunt
+                    eum quas facere minus, dicta aperiam, dignissimos laudantium deleniti aspernatur! </p>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
