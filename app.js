@@ -61,7 +61,7 @@ const displayNewses = async (id, cataName) => {
             <div class="card card-side bg-base-100 shadow-xl my-5 flex flex-col md:flex-row" >
             <img src="${thumbnail_url}" class="p-3">
             <div class="card-body">
-                <h2 class="card-title text-3xl">${title}</h2>
+                <h2 class="card-title text-3xl">${title ? title : 'no data found'}</h2>
                 <p>${details ? details.slice(0, 250) + '...' : 'no data found'}</p>
                 <div class="flex items-center justify-between">
                     <div class="flex items-center justify-between flex-col md:flex-row">
@@ -107,7 +107,7 @@ const showModal = async (news_id) => {
         modalBody.textContent = "";
         modalBody.innerHTML = `
         <img src="${image_url}" alt="">
-        <h2 class="text-center text-2xl font-bold ">${title}</h2>
+        <h2 class="text-center text-2xl font-bold ">${title ? title : 'no data found'}</h2>
         <p class="text-justify mb-2">${details}</p>
         
                                
