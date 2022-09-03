@@ -25,12 +25,13 @@ const displayCategories = async () => {
         `
         categoriesContainer.appendChild(categoryLi)
     });
-    showLoader(true)
+
 }
 
 // Display Newses Part 
 
 const displayNewses = async (id, cataName) => {
+    showLoader(true)
     const newsContainer = document.getElementById('news-container')
     const dataFound = document.getElementById('data-found')
     newsContainer.innerHTML = '';
@@ -41,6 +42,9 @@ const displayNewses = async (id, cataName) => {
         dataFound.innerHTML = `
     <h2 class="text-center text-3xl text-primary font-bold bg-gray-100 p-5">${allNews.length} Items Found On ${cataName} </h2>
 `
+        if (allNews.length === 0) {
+            showLoader(false);
+        }
         allNews.forEach(singleNews => {
 
             const { thumbnail_url, total_view, title, details, author, _id } = singleNews
@@ -77,13 +81,14 @@ const displayNewses = async (id, cataName) => {
     </div>
         `
             newsContainer.appendChild(newDiv)
+            showLoader(false)
         })
 
     } catch (error) {
         console.log(error)
     }
 
-    showLoader(false)
+
 }
 
 // display modal part 
