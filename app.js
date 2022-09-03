@@ -40,7 +40,8 @@ const displayNewses = async (id, cataName) => {
         const data = await (response.json())
         const allNews = (data.data)
 
-        // sorting Array 
+        // Sorting Array 
+
         allNews.sort(function (a, b) {
             return b.total_view - a.total_view
         })
@@ -91,8 +92,10 @@ const displayNewses = async (id, cataName) => {
         console.log(error)
     }
 
-
 }
+
+//Show modal part
+
 const showModal = async (news_id) => {
     try {
         const response = await fetch(`https://openapi.programming-hero.com/api/news/${news_id}`)
@@ -132,7 +135,7 @@ const showModal = async (news_id) => {
     }
 }
 
-// spinner part 
+//Spinner part 
 
 const showLoader = (loader) => {
     const loaderArea = document.getElementById('spinner')
@@ -143,7 +146,6 @@ const showLoader = (loader) => {
         loaderArea.classList.add('hidden')
     }
 }
-
 
 displayNewses('01', 'Breaking News');
 displayCategories();
