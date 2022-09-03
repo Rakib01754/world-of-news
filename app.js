@@ -39,6 +39,11 @@ const displayNewses = async (id, cataName) => {
         const response = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
         const data = await (response.json())
         const allNews = (data.data)
+
+        // sorting Array 
+        allNews.sort(function (a, b) {
+            return b.total_view - a.total_view
+        })
         dataFound.innerHTML = `
     <h2 class="text-center text-3xl text-primary font-bold bg-gray-100 p-5">${allNews.length} Items Found On ${cataName} </h2>
 `
@@ -47,7 +52,9 @@ const displayNewses = async (id, cataName) => {
         }
         allNews.forEach(singleNews => {
 
+
             const { thumbnail_url, total_view, title, details, author, _id } = singleNews
+
             const newDiv = document.createElement('div')
             newDiv.innerHTML = `
             <div class="card card-side bg-base-100 shadow-xl my-5 flex flex-col md:flex-row" >
